@@ -1,0 +1,11 @@
+// src/store/socketStore.ts
+import { create } from "zustand";
+import { io, Socket } from "socket.io-client";
+
+interface SocketStore {
+    socket: Socket;
+}
+
+export const useSocketStore = create<SocketStore>(() => ({
+    socket: io("http://localhost:8080"),
+}));
