@@ -7,5 +7,5 @@ interface SocketStore {
 }
 
 export const useSocketStore = create<SocketStore>(() => ({
-    socket: io("http://localhost:8080"),
+    socket: io("https://socket-api-eta.vercel.app/"),
 }));
