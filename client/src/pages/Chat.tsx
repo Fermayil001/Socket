@@ -41,7 +41,7 @@ const ChatUI: React.FC = () => {
             style={{ backgroundImage: `url(${BgPhoto})` }}
             className="w-full h-screen bg-center bg-cover pt-[5%]"
         >
-            <div className="max-w-md mx-auto rounded-lg shadow-2xl flex flex-col h-[500px] ">
+            <div className="w-[90%] max-w-md mx-auto rounded-lg shadow-2xl flex flex-col h-[500px] ">
                 <div className="flex-1 p-4 overflow-y-auto backdrop-blur-xs">
                     {allMessages.map((message, key) => (
                         <div

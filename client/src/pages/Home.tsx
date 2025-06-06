@@ -24,7 +24,7 @@ const Home = () => {
     return (
         <div className="w-full overflow-hidden h-screen flex items-center justify-center bg-gradient-to-br from-indigo-300 via-purple-200 to-pink-100 backdrop-blur-sm">
             <ToastContainer />
-            <div className="w-1/3 flex flex-col justify-center items-center p-6 bg-white/70 backdrop-blur-md shadow-xl rounded-xl border space-y-4 border-blue-200">
+            <div className="w-[90%] sm:w-1/3 flex flex-col justify-center items-center p-6 bg-white/70 backdrop-blur-md shadow-xl rounded-xl border space-y-4 border-blue-200">
                 <h1 className="text-center text-3xl mb-10 font-semibold cursor-default">Welcome to chat</h1>
                 <span>To start chat, please enter your name and meeting room code</span>
                 <CustomInput placeholder="Name" value={userName} onChange={e => setUserName(e.target.value)} />
