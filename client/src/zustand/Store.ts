@@ -6,5 +6,5 @@ interface SocketStore {
 }
 
 export const useSocketStore = create<SocketStore>(() => ({
-    socket: io("https://socket-api-eta.vercel.app/"),
+    socket: io("https://socket-u7uh.onrender.com"),
 }));
