@@ -2,8 +2,7 @@ import React, { useEffect, useState, type FormEvent } from "react";
 import BgPhoto from '../assets/images/chatBg.avif'
 import { useSocketStore } from "../zustand/Store";
 import { useParams } from "react-router-dom";
-
-
+import DefaultAvatar from '../assets/images/avatardefault_92824.webp'
 
 const ChatUI: React.FC = () => {
     const socket = useSocketStore(state => state.socket)
@@ -17,14 +16,11 @@ const ChatUI: React.FC = () => {
         { message: string; userName: string; room: string }[]
     >([]);
 
-
     useEffect(() => {
         socket.on('receive_message', (data: { message: string; userName: string; room: string }) => {
             setAllMessages(prev => [...prev, data])
         })
     }, [socket])
-
-
 
     const handleSend = (e: FormEvent) => {
         e.preventDefault();
@@ -51,14 +47,26 @@ const ChatUI: React.FC = () => {
                         <div
                             key={key}
                             className={`mb-3 flex ${message.userName === userName ? "justify-end" : "justify-start"
-                                }`}
+                                } `}
                         >
+                            {
+                                message.userName !== userName && (
+                                    <div className="flex flex-col">
+                                        <img
+                                            className="w-10 h-10"
+                                            src={DefaultAvatar}
+                                            alt=""
+                                        />
+                                    </div>
+                                )
+                            }
                             <div
                                 className={`inline-block px-4 py-2 rounded-lg max-w-[70%] whitespace-pre-wrap ${message.userName === userName
                                     ? "bg-blue-600 text-white rounded-br-none"
                                     : "bg-gray-300 text-gray-800 rounded-bl-none"
                                     }`}
                             >
+                                {message.userName !== userName && <div className=" text-sm font-semibold text-left">{message.userName}:</div>}
                                 {message.message}
                             </div>
                         </div>
@@ -84,7 +92,7 @@ const ChatUI: React.FC = () => {
                     </button>
                 </form>
             </div>
-        </div>
+        </div >
     );
 };
 

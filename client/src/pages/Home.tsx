@@ -1,10 +1,8 @@
 import { useState } from "react"
 import CustomInput from "../components/custom/CustomInput"
 import { useNavigate } from "react-router-dom"
-// import io from 'socket.io-client'
+import { toast, ToastContainer } from 'react-toastify';
 import { useSocketStore } from "../zustand/Store"
-
-// const socket = io('http://localhost:8080')
 
 const Home = () => {
     const navigate = useNavigate()
@@ -13,20 +11,23 @@ const Home = () => {
 
     const socket = useSocketStore(state => state.socket)
 
-    console.log(socket)
     const handleStartMessaging = () => {
         if (userName && room) {
             socket.emit('join_room', room)
             navigate(`/chat/room/${room}/${userName}`)
+        } else {
+            toast.error('Please enter your name and room code')
         }
     }
 
 
     return (
-        <div className="w-full h-screen flex items-center justify-center bg-gradient-to-br from-indigo-300 via-purple-200 to-pink-100 backdrop-blur-sm">
+        <div className="w-full overflow-hidden h-screen flex items-center justify-center bg-gradient-to-br from-indigo-300 via-purple-200 to-pink-100 backdrop-blur-sm">
+            <ToastContainer />
             <div className="w-1/3 flex flex-col justify-center items-center p-6 bg-white/70 backdrop-blur-md shadow-xl rounded-xl border space-y-4 border-blue-200">
-                <h1 className="text-center text-3xl mb-10 font-semibold">Start mesajlasma</h1>
-                <CustomInput placeholder="User name" value={userName} onChange={e => setUserName(e.target.value)} />
+                <h1 className="text-center text-3xl mb-10 font-semibold cursor-default">Welcome to chat</h1>
+                <span>To start chat, please enter your name and meeting room code</span>
+                <CustomInput placeholder="Name" value={userName} onChange={e => setUserName(e.target.value)} />
                 <CustomInput placeholder="Room" value={room} onChange={e => setRoom(e.target.value)} />
                 <button
                     onClick={handleStartMessaging}

@@ -1,11 +1,8 @@
-
-
 interface CustomInputProps {
     placeholder?: string;
     value?: string;
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
-
 
 const CustomInput: React.FC<CustomInputProps> = ({ placeholder, value, onChange }) => {
     return (
